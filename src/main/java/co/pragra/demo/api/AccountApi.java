@@ -59,7 +59,8 @@ public class AccountApi {
 //    }
     @GetMapping("/api/account/{id}")//to avoid someone passing the null id to the method we wrap it
     //with Integer type. We cannot wrap it with primitives.
-    public ResponseEntity<?> getById(@PathVariable("id") Optional<Integer> id) {// we put a ? mark as we don't know what we are returning
+    public ResponseEntity<?> getById(@PathVariable("id") Optional<Integer> id) {// we put a ? mark as we don't
+        // know what we are returning
         Optional<Account> account = service.getById(id.orElseThrow(() -> new IllegalArgumentException("ID Can't be null")));
         return ResponseEntity.ok(account.orElseThrow(AccountNotFoundException::new));
         //this is known as constructor reference
