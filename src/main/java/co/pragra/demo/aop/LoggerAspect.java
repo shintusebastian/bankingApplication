@@ -16,7 +16,7 @@ import java.util.Arrays;
 
 public class LoggerAspect {
     @Pointcut("execution(* co.pragra.demo.api.*.*(*))")
-    public void pd1(){
+    public void pd1(){//pd corresponds to predicate 1
 
     }
     @Pointcut("execution(* co.pragra.demo.services.*.*(*))")
@@ -41,8 +41,11 @@ public class LoggerAspect {
 //    Arrays.stream(joinPoint.getArgs()).forEach(System.out::println);
     //getArgs will give us the argument that is passed in the method call we make.
 //}
-    @AfterReturning("pd1()")
+    @AfterReturning("pd1()")//this method will only be called if the method in pd1() was successfully called and executed.
+    //@AfterThrowing("pd1()") will be executed only if the pd1() throws an exception
+    //@After("pd1()") will be executed in both AfterReturning and AfterThrowing cases.
     public void doLogs(JoinPoint joinPoint){
         log.info("Method Called join point {} ", joinPoint);
     }
+    //after returning will only execute if the method is completed successfully.
 }
