@@ -39,10 +39,18 @@ public class AccountApi {
     @GetMapping(value = "/api/account")
 //    @GetMapping(value="/api/account", produces = MediaType.APPLICATION_XML_VALUE)// to add xml.
 //    // by default the value will be json.
-    public List<Account> getAll(@RequestParam(value = "accountType", required = false/*means we
-    don't have to pass it*/) AccountType accountType) {
+    public List<Account> getAll(
+            @RequestParam(value = "accountType", required = false /*means we
+    don't have to pass it*/
+
+            ) AccountType accountType,
+            @RequestParam(value = "name", required = false)Optional<String> name
+    ) {
         if (accountType != null) {
             return service.getAll().stream().filter(a -> a.getAccountType() == accountType).collect(Collectors.toList());
+        }
+        if (name.isPresent()){
+            return service.getAccountByName(name.get());
         }
         return service.getAll();
     }
@@ -75,6 +83,11 @@ public class AccountApi {
 
 
     }
+//    @GetMapping("/api/account")
+//    public List<Account>findAllByAccountNameContainingIgnoreCase(@RequestParam String name){
+//return service.getAccountByName(name);
+//    }
+
 
     @PutMapping("/api/account")
     public Account updateAccount(@RequestBody Account account) {
