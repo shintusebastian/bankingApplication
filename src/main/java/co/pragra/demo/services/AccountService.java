@@ -54,4 +54,8 @@ public class AccountService {
 //        return accounts;
         return repo.findAll();
     }
+
+    public List<Account> getNegativeAccount() {
+        return repo.findNegativeBalance();
+    }
 }

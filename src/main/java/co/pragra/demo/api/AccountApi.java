@@ -93,4 +93,10 @@ public class AccountApi {
     public Account updateAccount(@RequestBody Account account) {
         return service.updateAccount(account);
     }
+
+    @GetMapping("/api/negative")
+    public List<Account>negativeAccount(){
+return service.getNegativeAccount();
+    }
+
 }
