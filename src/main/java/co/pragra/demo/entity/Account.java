@@ -18,7 +18,14 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)//hibernate will generate the sequence for us automatically.
     private Integer accountId;//we have market this accountId as an Id as Entity asks for a Table .
-    private Integer userId;
+
+    /*@Column(nullable = false) //means, we cannot pass a null value as the profileId. we comment them as
+    @Column cannot be applied to a @One to one annotation  */
+    @OneToOne(cascade = CascadeType.ALL)
+    /*cascading of operations means, whatever change we make in the account table will be
+    reflected in the profile table as well */
+    //telling hibernate that Account and Profile has one to one relation. It is declared to the profile id
+    private Profile profileId;
     @Column(name = "NAME", columnDefinition = "VARCHAR", length = 50, nullable = false)
     //this means that, name the database column as NAME.
     // Otherwise, it will be named as accountName in the database. Also, the column is varchar and it is not nullable.
