@@ -1,5 +1,8 @@
 package co.pragra.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +28,7 @@ public class Account {
     /*cascading of operations means, whatever change we make in the account table will be
     reflected in the profile table as well */
     //telling hibernate that Account and Profile has one to one relation. It is declared to the profile id
+    @JsonProperty("profile")
     private Profile profileId;
     @Column(name = "NAME", columnDefinition = "VARCHAR", length = 50, nullable = false)
     //this means that, name the database column as NAME.
@@ -32,8 +36,12 @@ public class Account {
     private String accountName;
 
     private AccountType accountType;
+
+    @JsonIgnore
     private double balance;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date createDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date updateDate;
 
 }

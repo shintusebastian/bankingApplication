@@ -6,10 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,6 +26,7 @@ public class Profile {
     private String lastName;
 //    private String email;
 //    private Long phoneNumber;
-    //private List<CustomerAddress> addresses;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+    private List<Address> addresses =new ArrayList<>();
 
 }

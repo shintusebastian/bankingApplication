@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+//@RestController
 //public class ProfileAPI {
 //    private ProfileService profileService;
 //
@@ -18,7 +19,7 @@ import java.util.Optional;
 //    public List<Profile> getAllProfiles() {
 //        return profileService.getAllProfiles();
 //    }
-//
+
 //    @PostMapping(value = "/api/profile")
 //    public Profile createProfile(@RequestBody Profile profile) {
 //        profileService.createProfile(profile);
